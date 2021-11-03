@@ -76,9 +76,9 @@ const LeyendaError = styled.p`
 
 const IconoValidacion = styled(FontAwesomeIcon)`
   position: absolute;
-  right: 70px;
+  right:90px;
   bottom: 14px;
-  z-index: 100;
+  z-index: 80;
   font-size: 16px;
   opacity: 0;
 
