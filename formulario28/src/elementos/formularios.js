@@ -69,7 +69,7 @@ const LeyendaError = styled.p`
         display: none;
     `}
 
-    ${props => props.valido === 'false' && css`
+  ${props => props.valido === 'false' && css`
         display: block;
     `}
 `;

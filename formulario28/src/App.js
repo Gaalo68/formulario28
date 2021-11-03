@@ -39,51 +39,53 @@ const App = () => {
     password: /^.{4,12}$/, // 4 a 12 digitos.
     correo: /^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/,
     telefono: /^\d{7,14}$/, // 7 a 14 numeros.
-  }
+  };
 
-  const validarPassword2 = () => {
-    if (password.campo.length > 0) {
-      if (password.campo !== password2.campo) {
-        cambiarPassword2((prevState) => {
-          return { ...prevState, valido: "false" };
-        });
-      } else {
-        cambiarPassword2((prevState) => {
-          return { ...prevState, valido: "true" };
-        });
-      }
-    }
-  }
-
-  const onChangeTerminos = (e) => {
-    cambiarTerminos(e.target.checked);
-  }
-
+ 
   const onSubmit = (e) => {
     e.preventDefault();
 
-    if(
-        usuario.valido === 'true' && 
-        nombre.valido === 'ture' &&
-        password.valido === 'true' &&
-        password2.valido === 'true' &&
-        correo.valido === 'true' &&
-        telefono.valido === 'true' &&
-        terminos.valido === 'true' &&
-        terminos 
-    ){
-        cambiarFormularioValido(true);
-        cambiarUsuario({campo: '', valido: ''});
-        cambiarNombre({campo: '', valido: ''});
-        cambiarPassword({campo: '', valido: ''});
-        cambiarPassword2({campo: '', valido: ''});
-        cambiarCorreo({campo: '', valido: ''});
-        cambiarTelefono({campo: '', valido: ''});
+    if (
+      usuario.valido === "true" &&
+      nombre.valido === "ture" &&
+      password.valido === "true" &&
+      password2.valido === "true" &&
+      correo.valido === "true" &&
+      telefono.valido === "true" &&
+      terminos.valido === "true" &&
+      terminos
+    ) {
+      cambiarFormularioValido(true);
+      cambiarUsuario({ campo: "", valido: "null" });
+      cambiarNombre({ campo: "", valido: "null" });
+      cambiarPassword({ campo: "", valido: "null" });
+      cambiarPassword2({ campo: "", valido: "null" });
+      cambiarCorreo({ campo: "", valido: "null" });
+      cambiarTelefono({ campo: "", valido: "null" });
     } else {
-        cambiarFormularioValido(false);
+      cambiarFormularioValido(false);
     }
   }
 
+  const validarPassword2 = () => {
+    if(password.campo.length > 0) {
+      if(password.campo !== password2.campo) {
+        cambiarPassword2((prevState) => {
+          return {...prevState, valido: 'false'}
+        });
+      } else {
+        cambiarPassword2((prevState) => {
+          return {...prevState, valido: 'true'}
+      });
+     }
+    }
+  }
+
+  const onChangeTermino = (e) => {
+    cambiarTerminos(e.target.checked);
+  }
+
+ 
   return (
     <main>
       <Formulario onSubmit={onSubmit}>
@@ -94,92 +96,92 @@ const App = () => {
           label="Usuario"
           placeholder="Jhon Doe"
           name="usuario"
-          LeyendaError="El usuario tiene que ser de 4 a 16 digitos y solo puede tener guion bajo"
+          leyendaError="El usuario tiene que ser de 4 a 16 digitos y solo puede tener guion bajo"
           expresionRegular={expresiones.usuario}
         />
 
         <Input
           estado={nombre}
-          cambiarNombre={cambiarNombre}
+          cambiarEstado={cambiarNombre}
           tipo="text"
           label="Nombre"
           placeholder="Jhon Doe"
-          name="nombre"
-          LeyendaError="El nombre solo puede contener letras y espacios"
+          name="usuario"
+          leyendaError="El nombre solo puede contener letras y espacios"
           expresionRegular={expresiones.nombre}
         />
 
         <Input
           estado={password}
-          cambiarPassword={cambiarPassword}
+          cambiarEstado={cambiarPassword}
           tipo="password"
-          label=""
-          placeholder=""
+          label="Contraseña"
           name="password1"
-          LeyendaError="La Contraseña debe ser de 4 a 12 digitos"
+          leyendaError="La contraseña tiene que ser de 4 a 12 digitosd
+          distingue mayusculas y minusculas"
           expresionRegular={expresiones.password}
         />
 
         <Input
           estado={password2}
-          cambiarPassword2={cambiarPassword2}
-          tipo="password"
-          label=""
-          placeholder=""
+          cambiarEstado={cambiarPassword2}
+          tipo="password2"
+          label="Repetir Contraseña"
           name="password2"
-          LeyendaError="Las Contraseñas deben ser iguales"
-          //le vamos a pasar una funcion ques e ejecuta cuando haya un cambio en el input
+          leyendaError="Ambas contraseñas deben ser iguales"
           funcion={validarPassword2}
         />
 
         <Input
           estado={correo}
-          cambiarCorreo={correo}
+          cambiarEstado={cambiarCorreo}
           tipo="email"
-          label="correo electronico"
-          placeholder="Correo electronico"
-          name="correo"
-          LeyendaError="La Correo solo puede contener letras numeros y puntos"
-          expresionRegular={expresiones.cambiarCorreo}
+          label="Correo electronico"
+          placeholder="correo@correo.com"
+          name="Correo"
+          leyendaError="El correo solo puede contener letras, 
+          numeros, puntos y guion bajo"
+          expresionRegular={expresiones.correo}
         />
 
         <Input
           estado={telefono}
-          telefono={cambiarTelefono}
+          cambiarEstado={cambiarTelefono}
           tipo="text"
-          label="telefono"
+          label="Telefono"
           placeholder="1234567890"
           name="telefono"
-          LeyendaError="La telefono slo puede contener numeros y un maximo de 14"
+          leyendaError="El nombre solo puede contener nmeros y un maximo de 14"
           expresionRegular={expresiones.telefono}
         />
 
         <ContenedorTerminos>
           <Label>
-            <input 
-            type="checkbox" 
-            name="terminos:" 
-            id="temrinos" 
-            checked={terminos} 
-            onChange={onChangeTerminos}
+            <input
+              type="checkbox"
+              name="terminos:"
+              id="temrinos"
+              checked={terminos}
+              onChange={onChangeTermino}
             />
             Acepto los Terminos y Condiciones
           </Label>
         </ContenedorTerminos>
+
         {formularioValido === false && <MensajeError>
             <p>
               <FontAwesomeIcon icon={faExclamationTriangle} />
-              <b> Error: </b>Por Favor Rellene el Formulario Correctamente/{">"}
-            </p>
-          </MensajeError>
-        }
+              <b> Error: </b>Por Favor Rellene el Formulario Correctamente</p>
+          </MensajeError>}
+
         <ContenedorBotonCentrado>
           <Boton type="submit">Enviar</Boton>
-          {formularioValido === true && <MensajeExito>Formulario Enviado Exitosamente!</MensajeExito>}
+          {formularioValido === true && <MensajeExito>
+          Formulario Enviado Exitosamente!</MensajeExito>}
         </ContenedorBotonCentrado>
       </Formulario>
     </main>
   );
 }
 
-export default App
+export default App;

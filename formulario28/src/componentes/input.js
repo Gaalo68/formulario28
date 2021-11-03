@@ -41,7 +41,7 @@ const ComponenteInput = ({
   name,
   leyendaError,
   expresionRegular,
-  funcion
+  funcion,
 }) => {
   const onChange = (e) => {
     cambiarEstado({ ...estado, campo: e.target.value });
@@ -84,7 +84,7 @@ const ComponenteInput = ({
       <LeyendaError valido={estado.valido}>{leyendaError}</LeyendaError>
     </div>
   );
-};
+}
 export default ComponenteInput;
 
 //para ejecutar una funcion cuando se presione una tecla o se de click fuerA
